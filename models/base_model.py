@@ -4,7 +4,6 @@
 import uuid
 from datetime import datetime
 import models
-import copy
 
 
 class BaseModel:
@@ -45,12 +44,10 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        """ returns a dictionary with all keys/value
-        of __dict__ of the instance """
-        dictnew = copy.deepcopy(self.__dict__)
-        dictnew['__class__'] = self.__class__.__name__
-        formato = "%Y-%m-%dT%H:%M:%S.%f"
-        dictnew['created_at'] = self.created_at.strftime(formato)
-        dictnew['updated_at'] = self.updated_at.strftime(formato)
-        dictnew['id'] = self.id
-        return dictnew
+        """returns a dictionary containing all keys/values"""
+        dict_repr = {}
+        dict_repr.update(self.__dict__)
+        dict_repr.update([("__class__", self.__class__.__name__),
+                          ("created_at", self.created_at.isoformat()),
+                          ("updated_at", self.updated_at.isoformat())])
+        return dict_repr
