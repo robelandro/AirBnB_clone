@@ -32,6 +32,7 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
+            models.FileStorage.new(self)
 
     def __str__(self):
         """ print a readable string """
@@ -41,6 +42,7 @@ class BaseModel:
     def save(self):
         """ updates with the current datetime """
         self.updated_at = datetime.now()
+        models.FileStorage.save()
 
     def to_dict(self):
         """ returns a dictionary with all keys/value
