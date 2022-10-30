@@ -2,7 +2,6 @@
 """State class that inherits from BaseModels
 """
 
-from unicodedata import name
 from models.base_model import BaseModel
 
 
