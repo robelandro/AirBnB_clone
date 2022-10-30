@@ -25,7 +25,6 @@ class TestFileStorage(unittest.TestCase):
     bm_instance = BaseModel(**my_dict)
     storage.new(bm_instance)
 
-
     def test_docstring_for_test(self):
         """
         Tests docstring for this test
@@ -82,6 +81,7 @@ class TestFileStorage(unittest.TestCase):
             reader = json.load(f)
         self.assertEqual(
             reader[key], TestFileStorage.storage.all()[key].to_dict())
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -153,5 +153,6 @@ class TestBaseModel(unittest.TestCase):
         bm1.name = "Betty"
         self.assertEqual(bm1.name, "Betty")
 
+
 if __name__ == '__main__':
     unittest.main()
