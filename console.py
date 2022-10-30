@@ -27,6 +27,7 @@ class HBNBCommand(cmd.Cmd):
                     print(a.id)
                     a.save()
                     pass
+
     def do_show(self, args):
         """ Prints the json file of an instance of a class name and id """
         words = args.split(' ')
@@ -48,6 +49,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             print("** no instance found **")
             pass
+
     def do_all(self, args):
         """ Prints all string representation of all instances """
         if len(args) == 0:
@@ -66,6 +68,7 @@ class HBNBCommand(cmd.Cmd):
                 if key1[0] == args:
                     obj = all_objs[obj_id]
                     print("{}".format(obj))
+
     def do_destroy(self, args):
         """ Deletes an instance based on the class name and id """
         words = args.split(' ')
@@ -86,6 +89,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
                 return
             print("** no instance found **")
+
     def do_update(self, args):
         """ Updates an instance based on the class name and id
             by adding or updating attribute """
@@ -117,6 +121,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
                 return
             print("** no instance found **")
+
     def precmd(self, line):
         """
         """
@@ -137,17 +142,21 @@ class HBNBCommand(cmd.Cmd):
                         t1[2] = t1[2][1:-1]
                         s = s + ' ' + t1[2]
                         return cmd.Cmd.precmd(self, s)
+
     def emptyline(self):
         """ Method called when an empty line is entered in response
         to the prompt."""
         pass
+
     def do_EOF(self, line):
         """ Ctrl D - the program will exit cleanly"""
         print()
         return True
+
     def do_quit(self, line):
         """ Quit command to exit the program """
         return True
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
