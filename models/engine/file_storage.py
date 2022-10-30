@@ -5,7 +5,6 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
-from models.amenity import Amenity
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
@@ -13,7 +12,7 @@ from models.place import Place
 from models.review import Review
 
 
-class FileStorage:
+class FileStorage():
     '''
     Class that serializes instances to a JSON file and deserializes
     JSON file to instances
@@ -42,7 +41,7 @@ class FileStorage:
         dic_objects = {}
         for key, value in self.__objects.items():
             dic_objects[key] = value.to_dict()
-        with open(FileStorage.__file_path, mode="w", encoding="utf-8") as f:
+        with open(FileStorage.__file_path, "w", encoding="utf-8") as f:
             json.dump(dic_objects, f, indent="")
 
     def reload(self):
@@ -51,7 +50,7 @@ class FileStorage:
         '''
         files = FileStorage.__file_path
         try:
-            with open(files, mode="r", encoding="utf-8") as f:
+            with open(files, mode="r", encoding='utf-8') as f:
                 json_dict = json.load(f)
                 for key, value in json_dict.items():
                     FileStorage.__objects[key] = eval(
