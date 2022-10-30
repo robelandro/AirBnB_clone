@@ -2,7 +2,6 @@
 """user class that inherits from BaseModels
 """
 
-import email
 from models.base_model import BaseModel
 
 
