@@ -11,7 +11,3 @@ class User(BaseModel):
     password = ""
     first_name = ""
     last_name = ""
-
-    def __init__(self, *args, **kwargs):
-        """Initializes just like it's parent class BaseModel does"""
-        super().__init__(*args, **kwargs)
