@@ -40,9 +40,9 @@ class FileStorage:
         Method to serializes __objects to the JSON file
         '''
         dic_objects = {}
-        for key, value in FileStorage.__objects.items():
+        for key, value in self.__objects.items():
             dic_objects[key] = value.to_dict()
-        with open(FileStorage.__file_path, 'w+') as f:
+        with open(FileStorage.__file_path, mode="w", encoding="utf-8") as f:
             json.dump(dic_objects, f)
 
     def reload(self):
@@ -50,7 +50,7 @@ class FileStorage:
         deserializes the JSON file to __objects
         '''
         try:
-            with open(FileStorage.__file_path, 'r') as f:
+            with open(self.__file_path, mode="r", encoding="utf-8") as f:
                 json_dict = json.load(f)
                 for key, value in json_dict.items():
                     FileStorage.__objects[key] = eval(
