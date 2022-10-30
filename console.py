@@ -4,12 +4,7 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.place import Place
-from models.city import City
-from models.amenity import Amenity
-from models.review import Review
+
 
 classes = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']
 
@@ -122,37 +117,37 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
                 return
             print("** no instance found **")
-     def precmd(self, line):
-         """
-         """
-         words = line.split('.', 1)
-         if len(words) == 1:
-             return cmd.Cmd.precmd(self, line)
-         s1 = words[1][:-1].split('(', 1)
-         t1 = s1[1].split(', ')
-         if s1[1] == '':
-             s = s1[0] + ' ' + words[0]
-             return cmd.Cmd.precmd(self, s)
-         if len(t1) >= 1:
-             s = s1[0] + ' ' + words[0] + ' ' + t1[0][1:-1]
-             if len(t1) >= 2:
-                 s = s + ' ' + t1[1][1:-1]
-                 if len(t1) >= 3:
-                     if t1[2][0] == "\"" and t1[2][-1] == "\"":
-                         t1[2] = t1[2][1:-1]
-                         s = s + ' ' + t1[2]
-                         return cmd.Cmd.precmd(self, s)
-      def emptyline(self):
-          """ Method called when an empty line is entered in response
-          to the prompt."""
-          pass
-      def do_EOF(self, line):
-          """ Ctrl D - the program will exit cleanly"""
-          print()
-          return True
-       def do_quit(self, line):
-           """ Quit command to exit the program """
-           return True
+    def precmd(self, line):
+        """
+        """
+        words = line.split('.', 1)
+        if len(words) == 1:
+            return cmd.Cmd.precmd(self, line)
+        s1 = words[1][:-1].split('(', 1)
+        t1 = s1[1].split(', ')
+        if s1[1] == '':
+            s = s1[0] + ' ' + words[0]
+            return cmd.Cmd.precmd(self, s)
+        if len(t1) >= 1:
+            s = s1[0] + ' ' + words[0] + ' ' + t1[0][1:-1]
+            if len(t1) >= 2:
+                s = s + ' ' + t1[1][1:-1]
+                if len(t1) >= 3:
+                    if t1[2][0] == "\"" and t1[2][-1] == "\"":
+                        t1[2] = t1[2][1:-1]
+                        s = s + ' ' + t1[2]
+                        return cmd.Cmd.precmd(self, s)
+    def emptyline(self):
+        """ Method called when an empty line is entered in response
+        to the prompt."""
+        pass
+    def do_EOF(self, line):
+        """ Ctrl D - the program will exit cleanly"""
+        print()
+        return True
+    def do_quit(self, line):
+        """ Quit command to exit the program """
+        return True
 
-       if __name__ == '__main__':
-           HBNBCommand().cmdloop()
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
