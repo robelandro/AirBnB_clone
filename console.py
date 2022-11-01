@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
                 setattr(value, words[2], words[3])
                 storage.save()
                 return
-            print("** no instance found **")
+        print("** no instance found **")
 
     def precmd(self, line):
         """
@@ -157,7 +157,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """ Ctrl D - the program will exit cleanly"""
-        print()
+        # print()
         return True
 
     def do_quit(self, line):
