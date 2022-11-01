@@ -146,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
                     if t1[2][0] == "\"" and t1[2][-1] == "\"":
                         t1[2] = t1[2][1:-1]
                         s = s + ' ' + t1[2]
-                        return cmd.Cmd.precmd(self, s)
+            return cmd.Cmd.precmd(self, s)
 
     def emptyline(self):
         """ Method called when an empty line is entered in response
