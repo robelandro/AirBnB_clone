@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ AirBnB Console project """
-
+import shlex
 import cmd
 from models import storage
 from models.base_model import BaseModel
@@ -17,6 +17,8 @@ classes = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']
 class HBNBCommand(cmd.Cmd):
     """ the command interpreter of AirBnB project """
     prompt = '(hbnb) '
+
+    all_objects = storage.all()
 
     def do_create(self, args):
         """ create a new instance of a class and prints the id """
@@ -161,6 +163,23 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """ Quit command to exit the program """
         return True
+
+    def do_count(self, line):
+        'Count command retrieve the number of instances of a class:'
+        args = shlex.split(line)
+        if len(args) == 0:
+            list1 = []
+            for key, value in HBNBCommand.all_objects.items():
+                list1.append(value.__str__())
+            print(len(list1))
+        elif args[0] not in classes:
+            print("** class doesn't exist **")
+        else:
+            list1 = []
+            for key, value in HBNBCommand.all_objects.items():
+                if type(value) == eval(args[0]):
+                    list1.append(value.__str__())
+            print(len(list1))
 
 
 if __name__ == '__main__':
