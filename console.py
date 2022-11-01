@@ -54,8 +54,8 @@ class HBNBCommand(cmd.Cmd):
                 obj = all_objs[obj_id]
                 print(obj)
                 return
-            print("** no instance found **")
-            pass
+        print("** no instance found **")
+        pass
 
     def do_all(self, args):
         """ Prints all string representation of all instances """
@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
                 del all_objs[str(s)]
                 storage.save()
                 return
-            print("** no instance found **")
+        print("** no instance found **")
 
     def do_update(self, args):
         """ Updates an instance based on the class name and id
